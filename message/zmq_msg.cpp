@@ -1,13 +1,15 @@
-// #include<capnp/message.h>
-// #include<capnp/serialize-packed.h>
-// #include<capnp/serialize.h>
+#include<capnp/message.h>
+#include<capnp/serialize-packed.h>
+#include<capnp/serialize.h>
 #include<iostream>
 #include<zmqpp/zmqpp.hpp>
+#include"schemas/message.capnp.h"
 
 
 void send_msg()
 {
     zmqpp::context context;
+    ::capnp::MallocMessageBuilder msg; 
 
     zmqpp::socket server(context, zmqpp::socket_type::push);
     try
