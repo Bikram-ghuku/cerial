@@ -12,3 +12,5 @@ clean:
 
 ${TARGETS}:
 	${CPP} ${CPPFLAGS} -o $@ ${@:%=%.cpp} ${LDFLAGS}
+	
+g++ -Wall -I. -O2 -std=c++17 capnp_impl.cpp zmq_msg.h -lcapnp -lkj -lzmqpp -lzmq
