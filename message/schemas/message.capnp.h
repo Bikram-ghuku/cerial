@@ -14,22 +14,37 @@
 namespace capnp {
 namespace schemas {
 
-CAPNP_DECLARE_SCHEMA(f6d05fdab6a0f2ed);
+CAPNP_DECLARE_SCHEMA(e3f2ea89aeb0211c);
+CAPNP_DECLARE_SCHEMA(efac39d05b0fdf25);
 
 }  // namespace schemas
 }  // namespace capnp
 
-namespace messaging {
 
-struct JsonMsg {
-  JsonMsg() = delete;
+struct KeyValuePair {
+  KeyValuePair() = delete;
 
   class Reader;
   class Builder;
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(f6d05fdab6a0f2ed, 0, 2)
+    CAPNP_DECLARE_STRUCT_HEADER(e3f2ea89aeb0211c, 0, 3)
+    #if !CAPNP_LITE
+    static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
+    #endif  // !CAPNP_LITE
+  };
+};
+
+struct MsgPacket {
+  MsgPacket() = delete;
+
+  class Reader;
+  class Builder;
+  class Pipeline;
+
+  struct _capnpPrivate {
+    CAPNP_DECLARE_STRUCT_HEADER(efac39d05b0fdf25, 0, 1)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -38,9 +53,9 @@ struct JsonMsg {
 
 // =======================================================================================
 
-class JsonMsg::Reader {
+class KeyValuePair::Reader {
 public:
-  typedef JsonMsg Reads;
+  typedef KeyValuePair Reads;
 
   Reader() = default;
   inline explicit Reader(::capnp::_::StructReader base): _reader(base) {}
@@ -54,6 +69,9 @@ public:
     return ::capnp::_::structString(_reader, *_capnpPrivate::brand());
   }
 #endif  // !CAPNP_LITE
+
+  inline bool hasSuperKey() const;
+  inline  ::capnp::Text::Reader getSuperKey() const;
 
   inline bool hasKey() const;
   inline  ::capnp::Text::Reader getKey() const;
@@ -73,9 +91,9 @@ private:
   friend class ::capnp::Orphanage;
 };
 
-class JsonMsg::Builder {
+class KeyValuePair::Builder {
 public:
-  typedef JsonMsg Builds;
+  typedef KeyValuePair Builds;
 
   Builder() = delete;  // Deleted to discourage incorrect usage.
                        // You can explicitly initialize to nullptr instead.
@@ -88,6 +106,13 @@ public:
 #if !CAPNP_LITE
   inline ::kj::StringTree toString() const { return asReader().toString(); }
 #endif  // !CAPNP_LITE
+
+  inline bool hasSuperKey();
+  inline  ::capnp::Text::Builder getSuperKey();
+  inline void setSuperKey( ::capnp::Text::Reader value);
+  inline  ::capnp::Text::Builder initSuperKey(unsigned int size);
+  inline void adoptSuperKey(::capnp::Orphan< ::capnp::Text>&& value);
+  inline ::capnp::Orphan< ::capnp::Text> disownSuperKey();
 
   inline bool hasKey();
   inline  ::capnp::Text::Builder getKey();
@@ -113,9 +138,90 @@ private:
 };
 
 #if !CAPNP_LITE
-class JsonMsg::Pipeline {
+class KeyValuePair::Pipeline {
 public:
-  typedef JsonMsg Pipelines;
+  typedef KeyValuePair Pipelines;
+
+  inline Pipeline(decltype(nullptr)): _typeless(nullptr) {}
+  inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
+      : _typeless(kj::mv(typeless)) {}
+
+private:
+  ::capnp::AnyPointer::Pipeline _typeless;
+  friend class ::capnp::PipelineHook;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+};
+#endif  // !CAPNP_LITE
+
+class MsgPacket::Reader {
+public:
+  typedef MsgPacket Reads;
+
+  Reader() = default;
+  inline explicit Reader(::capnp::_::StructReader base): _reader(base) {}
+
+  inline ::capnp::MessageSize totalSize() const {
+    return _reader.totalSize().asPublic();
+  }
+
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const {
+    return ::capnp::_::structString(_reader, *_capnpPrivate::brand());
+  }
+#endif  // !CAPNP_LITE
+
+  inline bool hasJson() const;
+  inline  ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Reader getJson() const;
+
+private:
+  ::capnp::_::StructReader _reader;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::List;
+  friend class ::capnp::MessageBuilder;
+  friend class ::capnp::Orphanage;
+};
+
+class MsgPacket::Builder {
+public:
+  typedef MsgPacket Builds;
+
+  Builder() = delete;  // Deleted to discourage incorrect usage.
+                       // You can explicitly initialize to nullptr instead.
+  inline Builder(decltype(nullptr)) {}
+  inline explicit Builder(::capnp::_::StructBuilder base): _builder(base) {}
+  inline operator Reader() const { return Reader(_builder.asReader()); }
+  inline Reader asReader() const { return *this; }
+
+  inline ::capnp::MessageSize totalSize() const { return asReader().totalSize(); }
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const { return asReader().toString(); }
+#endif  // !CAPNP_LITE
+
+  inline bool hasJson();
+  inline  ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Builder getJson();
+  inline void setJson( ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Reader value);
+  inline  ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Builder initJson(unsigned int size);
+  inline void adoptJson(::capnp::Orphan< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>&& value);
+  inline ::capnp::Orphan< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>> disownJson();
+
+private:
+  ::capnp::_::StructBuilder _builder;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  friend class ::capnp::Orphanage;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+};
+
+#if !CAPNP_LITE
+class MsgPacket::Pipeline {
+public:
+  typedef MsgPacket Pipelines;
 
   inline Pipeline(decltype(nullptr)): _typeless(nullptr) {}
   inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
@@ -131,73 +237,140 @@ private:
 
 // =======================================================================================
 
-inline bool JsonMsg::Reader::hasKey() const {
+inline bool KeyValuePair::Reader::hasSuperKey() const {
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
 }
-inline bool JsonMsg::Builder::hasKey() {
+inline bool KeyValuePair::Builder::hasSuperKey() {
   return !_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
 }
-inline  ::capnp::Text::Reader JsonMsg::Reader::getKey() const {
+inline  ::capnp::Text::Reader KeyValuePair::Reader::getSuperKey() const {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
-inline  ::capnp::Text::Builder JsonMsg::Builder::getKey() {
+inline  ::capnp::Text::Builder KeyValuePair::Builder::getSuperKey() {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
-inline void JsonMsg::Builder::setKey( ::capnp::Text::Reader value) {
+inline void KeyValuePair::Builder::setSuperKey( ::capnp::Text::Reader value) {
   ::capnp::_::PointerHelpers< ::capnp::Text>::set(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS), value);
 }
-inline  ::capnp::Text::Builder JsonMsg::Builder::initKey(unsigned int size) {
+inline  ::capnp::Text::Builder KeyValuePair::Builder::initSuperKey(unsigned int size) {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::init(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS), size);
 }
-inline void JsonMsg::Builder::adoptKey(
+inline void KeyValuePair::Builder::adoptSuperKey(
     ::capnp::Orphan< ::capnp::Text>&& value) {
   ::capnp::_::PointerHelpers< ::capnp::Text>::adopt(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
 }
-inline ::capnp::Orphan< ::capnp::Text> JsonMsg::Builder::disownKey() {
+inline ::capnp::Orphan< ::capnp::Text> KeyValuePair::Builder::disownSuperKey() {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::disown(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
-inline bool JsonMsg::Reader::hasValue() const {
+inline bool KeyValuePair::Reader::hasKey() const {
   return !_reader.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
 }
-inline bool JsonMsg::Builder::hasValue() {
+inline bool KeyValuePair::Builder::hasKey() {
   return !_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
 }
-inline  ::capnp::Text::Reader JsonMsg::Reader::getValue() const {
+inline  ::capnp::Text::Reader KeyValuePair::Reader::getKey() const {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_reader.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS));
 }
-inline  ::capnp::Text::Builder JsonMsg::Builder::getValue() {
+inline  ::capnp::Text::Builder KeyValuePair::Builder::getKey() {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS));
 }
-inline void JsonMsg::Builder::setValue( ::capnp::Text::Reader value) {
+inline void KeyValuePair::Builder::setKey( ::capnp::Text::Reader value) {
   ::capnp::_::PointerHelpers< ::capnp::Text>::set(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), value);
 }
-inline  ::capnp::Text::Builder JsonMsg::Builder::initValue(unsigned int size) {
+inline  ::capnp::Text::Builder KeyValuePair::Builder::initKey(unsigned int size) {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::init(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), size);
 }
-inline void JsonMsg::Builder::adoptValue(
+inline void KeyValuePair::Builder::adoptKey(
     ::capnp::Orphan< ::capnp::Text>&& value) {
   ::capnp::_::PointerHelpers< ::capnp::Text>::adopt(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), kj::mv(value));
 }
-inline ::capnp::Orphan< ::capnp::Text> JsonMsg::Builder::disownValue() {
+inline ::capnp::Orphan< ::capnp::Text> KeyValuePair::Builder::disownKey() {
   return ::capnp::_::PointerHelpers< ::capnp::Text>::disown(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS));
 }
 
-}  // namespace
+inline bool KeyValuePair::Reader::hasValue() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS).isNull();
+}
+inline bool KeyValuePair::Builder::hasValue() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::Text::Reader KeyValuePair::Reader::getValue() const {
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_reader.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS));
+}
+inline  ::capnp::Text::Builder KeyValuePair::Builder::getValue() {
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS));
+}
+inline void KeyValuePair::Builder::setValue( ::capnp::Text::Reader value) {
+  ::capnp::_::PointerHelpers< ::capnp::Text>::set(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::Text::Builder KeyValuePair::Builder::initValue(unsigned int size) {
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::init(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS), size);
+}
+inline void KeyValuePair::Builder::adoptValue(
+    ::capnp::Orphan< ::capnp::Text>&& value) {
+  ::capnp::_::PointerHelpers< ::capnp::Text>::adopt(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::Text> KeyValuePair::Builder::disownValue() {
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::disown(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS));
+}
+
+inline bool MsgPacket::Reader::hasJson() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline bool MsgPacket::Builder::hasJson() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Reader MsgPacket::Reader::getJson() const {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>::get(_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline  ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Builder MsgPacket::Builder::getJson() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>::get(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline void MsgPacket::Builder::setJson( ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Reader value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>::Builder MsgPacket::Builder::initJson(unsigned int size) {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>::init(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), size);
+}
+inline void MsgPacket::Builder::adoptJson(
+    ::capnp::Orphan< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>&& value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>::adopt(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>> MsgPacket::Builder::disownJson() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::KeyValuePair,  ::capnp::Kind::STRUCT>>::disown(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+
 

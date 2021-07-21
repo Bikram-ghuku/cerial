@@ -1,10 +1,13 @@
-using Cxx = import "./include/c++.capnp";
-$Cxx.namespace("messaging");
-
 @0xdc1423e87dd45e6d;
 
-struct JsonMsg
+struct KeyValuePair
 {
-    key @0 :Text;
-    value @1 :Text; 
+    superKey @0 :Text;
+    key @1 :Text;
+    value @2 :Text; 
+}
+
+struct MsgPacket
+{
+    json @0: List(KeyValuePair);
 }
