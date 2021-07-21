@@ -8,9 +8,7 @@ void send_msg(kj::ArrayPtr<capnp::word> msg)
     zmqpp::context context; 
     zmqpp::socket server(context, zmqpp::socket_type::push);
 
-    zmqpp::zmq_internal_exception error;
     server.bind("tcp://127.0.0.1:5556");
-    throw error;
     std::cout<<"binded to tcp addr"<<std::endl;
 
     zmq_msg_t message;
