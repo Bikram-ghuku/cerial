@@ -13,8 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: setup 
-      run : ./ubuntu_setup.sh
+    - name: install dependencies 
+      run : apt-get install -y --no-install-recommends \
+              capnproto \
+              libcapnp-dev \
+              libzmqpp-dev \
     - name: checks capnp sender
       run: cd message && g++ -Wall -I. -O2 -std=c++17 capnp_impl.cpp zmq_msg.h -lcapnp -lkj -lzmqpp -lzmq
     - name: make check
