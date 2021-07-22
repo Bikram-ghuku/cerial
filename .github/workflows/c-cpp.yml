@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: install dependencies 
-      run : sudo ./ubuntu_setup
+      run : ./ubuntu_setup
     - name: checks capnp sender
       run: cd message && g++ -Wall -I. -O2 -std=c++17 capnp_impl.cpp zmq_msg.h -lcapnp -lkj -lzmqpp -lzmq
     - name: make check
