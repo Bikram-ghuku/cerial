@@ -15,7 +15,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: install dependencies 
       run : bash ubuntu_setup.sh
-    - name: checks capnp sender
-      run: cd message && g++ -Wall -I. -O2 -std=c++17 capnp_impl.cpp zmq_msg.h -lcapnp -lkj -lzmqpp -lzmq -o capnp_impl
     - name: make check
       run: make check
