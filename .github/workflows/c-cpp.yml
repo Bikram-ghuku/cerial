@@ -15,5 +15,3 @@ jobs:
     - uses: actions/checkout@v2
     - name: install dependencies 
       run : bash ubuntu_setup.sh
-    - name: make check
-      run: make check
