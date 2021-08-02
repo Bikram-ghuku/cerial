@@ -14,3 +14,4 @@ ${TARGETS}:
 	${CPP} ${CPPFLAGS} -o $@ ${@:%=%.cpp} ${LDFLAGS}
 	
 g++ -Wall -I. -O2 -std=c++17 capnp_impl.cpp read_zmq_msg.h send_zmq_msg.h -lcapnp -lkj -lzmqpp -lzmq
+g++ -Wall -I. -O2 -std=c++17 capnp_impl.cpp read_zmq_msg.h send_zmq_msg.h schemas/message.capnp.h -lcapnp -lkj -lzmqpp -lzmq
