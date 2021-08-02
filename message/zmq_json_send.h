@@ -59,7 +59,7 @@ public:
         std::list<std::string>::iterator iter_label = label.begin();
         std::list<std::string>::iterator iter_data = data.begin();
         Json::Value send_msg_create;
-        for(int x=0; x<=this->size && iter_label!=label.end() && iter_label!=label.end(); x++)
+        for(int x=0; x<=this->size || iter_data!=data.end() || iter_label!=label.end(); x++)
         {
             send_msg_create[*iter_label] = *iter_data;
             iter_data++;
