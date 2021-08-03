@@ -40,7 +40,6 @@ private:
 public:
     void new_message( std::string request, int size=1)
     {
-        
         this->size = size;
         this->request = request;
     }

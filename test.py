@@ -1,5 +1,6 @@
 from message import zmq_json_pub as zmq_publisher
 from message import zmq_json_recv as zmq_recv
+import zmq
 
 init = zmq_publisher.publish('sensorEvent')
 init.new_message(size=2)
