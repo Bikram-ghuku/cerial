@@ -25,14 +25,16 @@ class publish():
         server.send_json(send_msg)
 
     def send(self, label:list, data:list):
-        msg = []
+        # msg = []
+        data_d = {}
         size = self.size
         request = self.request
         try:
             for x in range(0, size):
-                msg.append({label[x]: data[x]})
+                data_d[label[x]] = data[x]
+                # msg.append({label[x]: data[x]})
         except IndexError as e:
             raise IndexError(f"size is set to {size}, but receive length {len(label)}")
         
-        send_msg = {request : msg}
+        send_msg = {request : data_d}
         server.send_json(send_msg)
