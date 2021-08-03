@@ -8,4 +8,4 @@ sudo apt-get update && sudo apt-get install -y \
     python3-pip 
 
 pip install pyzmq
-pip install json
+pip install jsonlib
