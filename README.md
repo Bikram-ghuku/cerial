@@ -9,7 +9,7 @@ cd ~
 git clone https://github.com/Bikram-ghuku/vibereal.git
 ```
 
-#### open two terminal
+#### Open two terminal
 
 Type in the command to run py to py publisher example: 
 
