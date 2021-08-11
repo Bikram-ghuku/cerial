@@ -5,5 +5,6 @@
 #### To test working of this module use the following commands:
 
 ```Clone this repository
-cd ~ && git clone https://github.com/Bikram-ghuku/vibereal.git
+cd ~
+git clone https://github.com/Bikram-ghuku/vibereal.git
 ```
