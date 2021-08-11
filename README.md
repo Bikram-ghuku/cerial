@@ -8,3 +8,19 @@
 cd ~
 git clone https://github.com/Bikram-ghuku/vibereal.git
 ```
+
+#### open two terminal
+
+Type in the command to run py to py publisher example: 
+
+```py-2-py pub
+python pub.py
+```
+
+Type in the command to run py to py subscriber example:
+
+```py-2-py sub
+python rev.py
+```
+
+
