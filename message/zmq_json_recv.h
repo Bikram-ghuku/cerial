@@ -16,6 +16,7 @@ private:
         zmqpp::message message;
         zmqpp::socket client(this->context, zmqpp::socket_type::sub);
         client.connect("tcp://127.0.0.1:5555");
+        client.subscribe("");
         client.receive(message);
         return message;
     }

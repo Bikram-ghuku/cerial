@@ -4,25 +4,6 @@
 #include<jsoncpp/json/writer.h>
 #include<iostream>
 #include<zmqpp/zmqpp.hpp>
-// int main()
-// {
-
-//     Json::Value out;
-    
-
-//     out["OP"] = "noob";
-//     out["lol"] = "noob";
-
-//     // std::string string= Json::writeString(builder, out);
-
-    
-//     // std::cout<<string<<std::endl;
-//     // zmqpp::message message;
-//     // message<<string;
-//     // server.send(message);
-//     return 0;
-// }
-
 class publish
 {
 private:

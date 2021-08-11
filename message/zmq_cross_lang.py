@@ -12,6 +12,7 @@ class subscriber():
         self.request = request
 
     def get_data(self):
+        client.subscribe("")
         msg_str = client.recv_string()
         msg = json.loads(msg_str)
         msg_rtn = msg[self.request]
