@@ -3,7 +3,7 @@ import json
 
 context = zmq.Context()
 
-sock_typ = zmq.PUSH
+sock_typ = zmq.PUB
 server = context.socket(sock_typ)
 try:
     server.bind("tcp://127.0.0.1:5556")
@@ -22,7 +22,7 @@ class publish():
     def send_json(self, msg:json):
         request = self.request
         send_msg = {request : msg}
-        server.send_json(send_msg)
+        server.send_json(end_msg)
 
     def send(self, label:list, data:list):
         # msg = []

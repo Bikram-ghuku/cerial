@@ -14,7 +14,7 @@ private:
     zmqpp::message recv_msg_actually()
     {
         zmqpp::message message;
-        zmqpp::socket client(this->context, zmqpp::socket_type::pull);
+        zmqpp::socket client(this->context, zmqpp::socket_type::sub);
         client.connect("tcp://127.0.0.1:5555");
         client.receive(message);
         return message;

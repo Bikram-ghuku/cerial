@@ -14,7 +14,7 @@ private:
     std::string request;
     void send_msg_actually(std::string snd)
     {
-        zmqpp::socket server(this->context, zmqpp::socket_type::push);
+        zmqpp::socket server(this->context, zmqpp::socket_type::pub);
         server.bind("tcp://127.0.0.1:5554");
         server.send(snd);
     }

@@ -3,7 +3,7 @@ import json
 
 context = zmq.Context()
 
-sock_typ = zmq.PULL
+sock_typ = zmq.SUB
 client = context.socket(sock_typ)
 client.connect("tcp://127.0.0.1:5554")
 
