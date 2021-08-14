@@ -2,8 +2,9 @@ from message import zmq_json_pub as pub
 import random
 import string
 import time
-value = 9
 
+
+value = 0
 while True:
     init = pub.publish("OP")
     init.new_message(size=1)
