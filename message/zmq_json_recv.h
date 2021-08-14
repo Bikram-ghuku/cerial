@@ -11,6 +11,7 @@ private:
     zmqpp::context context;
     Json::StreamWriterBuilder builder;
     std::string request;
+    std::string requests;
     zmqpp::message recv_msg_actually()
     {
         zmqpp::message message;
@@ -31,12 +32,12 @@ public:
     {
         
         auto msgsgs = this->recv_msg_actually();
-        auto request = this->request;
-        msgsgs>>request;
+        auto requests = this->requests;
+        msgsgs>>requests;
         Json::Value rootl;
         Json::Reader read;
         Json::Value read_data;
-        bool succesful = read.parse(request, rootl);
+        bool succesful = read.parse(requests, rootl);
         if(!succesful)
         {
             std::cout<<"error reading json from string"<<std::endl;
