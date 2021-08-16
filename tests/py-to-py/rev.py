@@ -1,8 +1,11 @@
 from message import zmq_json_recv as recv
 
+inp = input("Enter number: ")
+revcr = recv.subscriber(f"logs_test{inp}")
 
-revcr = recv.subscriber("OP")
 print("OP \n")
 while True:
-    print(revcr.get_data())
-
+    try:
+        print(revcr.get_data())
+    except KeyError:
+        pass
