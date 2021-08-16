@@ -23,10 +23,11 @@ private:
     }
 
 public:
-    subs_py(std::string request) : request(request)
+    subs_py(std::string request)
     {
+        this->request = request;
+    
     }
-
     Json::Value get_json()
     {
         
@@ -51,4 +52,5 @@ public:
 
         return read_data;
     }
+    
 };
