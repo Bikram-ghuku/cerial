@@ -6,10 +6,10 @@ context = zmq.Context()
 sock_typ = zmq.PUB
 server = context.socket(sock_typ)
 try:
-    server.bind("tcp://127.0.0.1:5556")
+    server.bind("tcp://127.0.0.1:5553")
     print("Binded to tcp addr")
 except:
-    server.connect("tcp://127.0.0.1:5556")
+    server.connect("tcp://127.0.0.1:5553")
     print("connected to tcp addr")
 
 class publish():
@@ -22,7 +22,7 @@ class publish():
     def send_json(self, msg:json):
         request = self.request
         send_msg = {request : msg}
-        server.send_string(str(end_msg))
+        server.send_json(end_msg)
 
     def send(self, label:list, data:list):
         # msg = []
@@ -36,4 +36,4 @@ class publish():
             raise IndexError(f"size is set to {size}, but receive length {len(label)}")
         
         send_msg = {request : data_d}
-        server.send_string(str(send_msg))
+        server.send_json(send_msg)

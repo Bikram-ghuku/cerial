@@ -34,11 +34,12 @@ public:
         auto msgsgs = this->recv_msg_actually();
         auto requests = this->requests;
         msgsgs>>requests;
-
+        this->requests=requests;
         Json::Value rootl;
         Json::Reader read;
         Json::Value read_data;
 
+        std::cout<<requests<<std::endl;
         bool succesful = read.parse(requests, rootl);
 
         if(!succesful)
