@@ -10,7 +10,7 @@ git clone https://github.com/Bikram-ghuku/vibereal.git
 ```
 #### Install required files
 ```Setup the library
-bash ubuntu_setup.sh
+./ubuntu_setup.sh
 ```
 
 #### Open two terminal
