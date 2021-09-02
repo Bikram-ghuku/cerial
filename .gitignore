@@ -2,5 +2,6 @@
 .vscode*
 /.vscode
 Makefile
+message/Makefile
 *.out
 *.o
