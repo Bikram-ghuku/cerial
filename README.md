@@ -1,6 +1,7 @@
 # Open source messaging software **vibereal**
 
 ![Github Top language](https://img.shields.io/github/languages/top/Bikram-ghuku/cerial)
+![Github License](https://img.shields.io/github/license/Bikram-ghuku/cerial)
 
 ### This is used to communicate between various sub processes running on languages **C++** and **Python**
 
