@@ -3,7 +3,7 @@
 ![Github Top Language](https://img.shields.io/github/languages/top/Bikram-ghuku/cerial)
 ![Github release](https://img.shields.io/github/v/release/Bikram-ghuku/cerial)
 ![Github License](https://img.shields.io/github/license/Bikram-ghuku/cerial)
-![Github Workflow tests](https://github.com/Bikram-ghuku/cerial/actions/workflows/python-package.yml/badge.svg)
+![Github Workflow tests](https://github.com/Bikram-ghuku/cerial/actions/workflows/c-cpp.yml/badge.svg)
 ### This is used to communicate between various sub processes running on languages **C++** and **Python**
 
 #### To test working of this module use the following commands:
